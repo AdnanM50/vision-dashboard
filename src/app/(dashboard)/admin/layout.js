@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
 
     <html lang="en">
     <body >
-      <div className="flex min-h-screen bg-[url('/images/bg.png')] bg-blue-950 bg-no-repeat	bg-cover">
+      <div className="flex min-h-screen bg-[url('/images/bg.png')] bg-blue-950 bg-no-repeat	bg-cover px-1">
         <Sidebar />
         <main className="flex-1 flex flex-col ">
           <Header />
