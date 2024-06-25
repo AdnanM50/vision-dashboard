@@ -17,8 +17,10 @@ module.exports = {
         secondary: "#FF8C00",
         bgLine: "#B3B3B3",
         heading: "#24315E",
-        dark_color: "#FAF9F6",
         bghover: "#88858541",
+        bgicon: "#0075FF",
+        textgray: "#A0AEC0",
+        textgreen: "#01B574",
 
       },
     },

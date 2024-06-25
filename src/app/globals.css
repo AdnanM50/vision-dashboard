@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body {
+    overflow-x: hidden;
+  }
+
+.gray-text{
+    @apply text-xs text-textgray;
+}
+.white-text{
+    @apply text-xs text-white;
+}
+.green-text{
+    @apply text-[16px] text-textgreen;
+}
