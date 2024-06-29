@@ -16,12 +16,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <>
 
-<div className={`bg-[url('/images/side.png')] bg-no-repeat bg-cover mt-2 text-white w-64 min-h-screen p-[22px] fixed z-20 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out`}>
+<div className={`bg-[url('/images/side.png')] bg-no-repeat bg-cover mt-2 text-white w-[250px] min-h-screen p-[22px] fixed z-20 transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:relative md:translate-x-0 transition-transform duration-300 ease-in-out`}>
       <h1 className="text-sm text-center tracking-wide font-bold mb-6 uppercase">
         vision ui free
       </h1>
       <ul className="space-y-3">
-        <li className="flex justify-start items-center text-xl gap-3 py-3 bg-bghover rounded-2xl px-4">
+        <li className="flex justify-start items-center text-xl gap-3 py-2 bg-bghover rounded-2xl px-4">
           <span className="p-2 bg-bgicon rounded-xl">
             <FaHome size={21} color="white" />
           </span>
@@ -29,7 +29,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             Dashboard
           </a>
         </li>
-        <li className="flex justify-start items-center text-xl gap-3 py-3 bg-bghover rounded-2xl px-4">
+        <li className="flex justify-start items-center text-xl gap-3 py-2 bg-bghover rounded-2xl px-4">
           <span className="p-2 bg-bgicon rounded-xl">
             <FaHome size={21} color="white" />
           </span>
@@ -37,7 +37,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             Users
           </a>
         </li>
-        <li className="flex justify-start items-center text-xl gap-3 py-3 bg-bghover rounded-2xl px-4">
+        <li className="flex justify-start items-center text-xl gap-3 py-2 bg-bghover rounded-2xl px-4">
           <span className="p-2 bg-bgicon rounded-xl">
             <FaHome size={21} color="white" />
           </span>
@@ -45,7 +45,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             Products
           </a>
         </li>
-        <li className="flex justify-start items-center text-xl gap-3 py-3 bg-bghover rounded-2xl px-4">
+        <li className="flex justify-start items-center text-xl gap-3 py-2 bg-bghover rounded-2xl px-4">
           <span className="p-2 bg-bgicon rounded-xl">
             <FaHome size={21} color="white" />
           </span>
