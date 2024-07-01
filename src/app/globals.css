@@ -2,51 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    overflow-x: hidden;
-  }
+  overflow-x: hidden;
+}
 
-.gray-text{
-    @apply text-xs text-textgray;
+.gray-text {
+  @apply text-xs text-textgray;
 }
-.white-text{
-    @apply text-xs text-white;
+.white-text {
+  @apply text-xs text-white;
 }
-.green-text{
-    @apply text-[16px] text-textgreen;
+.green-text {
+  @apply text-[16px] text-textgreen;
 }
 .ant-progress-circle-path {
-    stroke: #04ff2d !important;
+  stroke: #04ff2d !important;
 }
-/* .App {
-    font-family: sans-serif;
-    text-align: center;
-  } */
-   /* .area-chart {
+
+
+/* .area-chart {
      width: 100%;
     height: 100%;
  
     } */
-    /* .recharts-surface{
+/* .recharts-surface{
         width: 100%;
     
     } */
-    .recharts-wrapper {
-        /* width: 100px !important;
+.recharts-wrapper {
+  /* width: 100px !important;
         height: 146px !important; */
-         width: 100% !important;
-        height: 7% !important;
-      }
-      .recharts-text {
-        font-size: 8px !important;
-        fill: #dfd1d1 !important;
-      }
-      .recharts-layer{
-        width: 100% !important;
-        height: 100% !important;
-      }
-      /* .recharts-surface{
+  width: 100% !important;
+  height: 7% !important;
+}
+.recharts-text {
+  font-size: 10px !important;
+  fill: #dfd1d1 !important;
+}
+.recharts-layer {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* .recharts-surface{
         width: 100% !important;
         height: 100% !important;
       } */
+
+.recharts-layer .recharts-bar-rectangle path {
+  fill: #04ff2d !important;
+  border-radius: 30px !important;
+}

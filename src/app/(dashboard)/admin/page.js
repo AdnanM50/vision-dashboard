@@ -4,7 +4,20 @@ import { FaFileAlt, FaHome } from 'react-icons/fa'
 import { AiOutlineGlobal } from "react-icons/ai";
 import { IoCartSharp } from 'react-icons/io5';
 import { Progress } from 'antd';
-import Areachart from '@/components/common/chart/areaChart';
+import dynamic from "next/dynamic";
+// import Areachart from '@/components/common/chart/areaChart';
+const Areachart = dynamic(
+  () => import("../../../components/common/chart/areaChart.js"),
+  {
+    ssr: false,
+  }
+);
+const Barchart = dynamic(
+  () => import("../../../components/common/chart/barchart.js"),
+  {
+    ssr: false,
+  }
+);
 
 
 const page = () => {
@@ -42,10 +55,12 @@ const page = () => {
 </div>
 
 <div className="lg:flex gap-5 my-7 w-full">
-    <div className="basis-[55%]">
+    <div className="basis-[57%]">
       <Areachart/>
     </div>
-    <div className="bg-[#060B26] basis-[45%] p-5 rounded-2xl">8</div>
+    <div className="bg-[#060b26bb] basis-[43%] p-3 rounded-2xl">
+      <Barchart/>
+    </div>
 </div>
 <div className="lg:flex gap-5 my-7 w-full">
     <div className="basis-[60%] p-9 rounded-2xl bg-gradient-to-t from-[#060B28] to-[#0A0E23]">8</div>
