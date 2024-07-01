@@ -5,6 +5,7 @@ import { AiOutlineGlobal } from "react-icons/ai";
 import { IoCartSharp } from 'react-icons/io5';
 import { Progress } from 'antd';
 import dynamic from "next/dynamic";
+import CardTable from '@/components/common/table/cardTable.js';
 // import Areachart from '@/components/common/chart/areaChart';
 const Areachart = dynamic(
   () => import("../../../components/common/chart/areaChart.js"),
@@ -63,7 +64,9 @@ const page = () => {
     </div>
 </div>
 <div className="lg:flex gap-5 my-7 w-full">
-    <div className="basis-[60%] p-9 rounded-2xl bg-gradient-to-t from-[#060B28] to-[#0A0E23]">8</div>
+    <div className="basis-[60%] p-9 rounded-2xl bg-gradient-to-t from-[#060B28] to-[#0A0E23]">
+    {/* <CardTable/> */}
+    </div>
     <div className="bg-[#060B26] basis-[40%] p-5 rounded-2xl">8</div>
 </div>
     </>
