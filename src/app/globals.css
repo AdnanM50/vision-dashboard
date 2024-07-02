@@ -52,3 +52,8 @@ body {
   fill: #04ff2d !important;
   border-radius: 30px !important;
 }
+.ant-card-body {
+  padding: 0px !important;
+  background-color: transparent !important;
+  
+}

@@ -6,6 +6,7 @@ import { IoCartSharp } from 'react-icons/io5';
 import { Progress } from 'antd';
 import dynamic from "next/dynamic";
 import CardTable from '@/components/common/table/cardTable.js';
+import Table from '@/components/common/table/table.js';
 // import Areachart from '@/components/common/chart/areaChart';
 const Areachart = dynamic(
   () => import("../../../components/common/chart/areaChart.js"),
@@ -22,6 +23,59 @@ const Barchart = dynamic(
 
 
 const page = () => {
+
+  const columns = [
+    {
+      text: "product_name",
+      dataField: "product_name",
+     
+    },
+    {
+      text: "withdraw date",
+      dataField: "withdraw_date",
+     
+    },
+    {
+      text: "customer name",
+      dataField: "customer_name",
+      
+    },
+    {
+      text: "Amount",
+      dataField: "amount",
+    
+    },
+    {
+      text: "Account Details",
+      dataField: "payment_method",
+      
+    },
+  
+  ];
+  const data = [
+    {
+      product_name: "Ninja Turtles",
+      withdraw_date: "2023-05-01",
+      customer_name: "John Doe",
+      amount: "$100",
+      payment_method: "Credit Card",
+    },
+    {
+      product_name: "Harry Potter",
+      withdraw_date: "2023-05-02",
+      customer_name: "Jane Smith",
+      amount: "$200",
+      payment_method: "PayPal",
+    },
+    {
+      product_name: "Superman",
+      withdraw_date: "2023-05-03",
+      customer_name: "Bob Johnson",
+      amount: "$300",
+      payment_method: "Bank Transfer",
+    },
+  ];
+
   return (
     <>
 <div className="grid lg:grid-cols-4 gap-6">
@@ -66,6 +120,11 @@ const page = () => {
 <div className="lg:flex gap-5 my-7 w-full">
     <div className="basis-[60%] p-9 rounded-2xl bg-gradient-to-t from-[#060B28] to-[#0A0E23]">
     {/* <CardTable/> */}
+    <Table 
+    pagination={false}
+    columns={columns}
+    data={data}
+    />
     </div>
     <div className="bg-[#060B26] basis-[40%] p-5 rounded-2xl">8</div>
 </div>
