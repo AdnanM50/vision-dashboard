@@ -1,11 +1,12 @@
 'use client';
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Header = ({ setSidebarOpen }) => {
   return (
     <header className="shadow p-4 flex justify-between items-center">
     <div className="flex">
       <button className="md:hidden" onClick={() => setSidebarOpen(prev => !prev)}>
-        <svg
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"
           fill="none"
@@ -18,7 +19,9 @@ const Header = ({ setSidebarOpen }) => {
             strokeWidth={2}
             d="M4 6h16M4 12h16M4 18h16"
           />
-        </svg>
+        </svg> */}
+        <GiHamburgerMenu size={20} color="blue"/>
+
       </button>
       <h2 className="text-2xl font-semibold ml-4">Dashboard</h2>
     </div>
