@@ -1,287 +1,45 @@
-"use client"
-import { FaEye, FaPencilAlt, FaTimes, FaTrashAlt } from "react-icons/fa";
-// import { Loader } from "./loader";
+// ProjectTable.jsx
+'use client';
+import React from 'react';
 
-import { Card, Empty, Modal, Pagination } from "antd";
-import { useState } from "react";
-// import { useActionConfirm } from "../../helpers/hooks";
-// import SearchInput from "../form/search";
-// import Pagination from "./pagination";
-// import { useI18n } from "@/app/contexts/i18n";
-
-const Table = ({
-  columns,
-  data,
-  indexed,
-  loading = false,
-  noActions,
-  actions,
-  action,
-  onView,
-  onEdit,
-  onDelete,
-  onReload,
-  pagination = false,
-  shadow = true,
-  title,
-  noHeader = false,
-  afterSearch,
-  onSearchChange,
-  onDeleteData
-}) => {
-  // const i18n = useI18n();
-
-  let cols = noActions
-    ? columns
-    : [
-      ...columns,
-      {
-        text: "Action",
-        dataField: "no_actions",
-        className: "text-right",
-        formatter: (noActions, data) => {
-          return (
-            <div className="flex justify-end gap-2.5">
-              {actions && actions(data)}
-              {onView && (
-                <button
-                  className="btn btn-outline-success btn-sm focus:shadow-none border border-green-700 text-green-700 p-2 rounded hover:bg-green-700 hover:text-white "
-                  title="View"
-                  onClick={() => onView(data)}
-                >
-                  <FaEye />
-                </button>
-              )}
-              {data.disableEdit === 1 &&
-                !onView &&
-                data.disableDelete === 1 &&
-                !actions &&
-                "-"}
-              {onEdit && data?.disableEdit !== 1 && (
-                <button
-                  className="border border-indigo-700 text-indigo-700 p-2 rounded hover:bg-indigo-700 hover:text-white focus:shadow-none"
-                  title="Edit"
-                  onClick={() => onEdit(data)}
-                >
-                  <FaPencilAlt size={12} />
-                </button>
-              )}
-              {/* {onDelete && data?.disableDelete !== 1 && (
-                <button
-                  className="border border-red-700 p-2 rounded hover:bg-red-700 text-red-600 hover:text-white focus:shadow-none"
-                  title="Delete"
-                  onClick={async () => {
-                    await useActionConfirm(
-                      onDelete,
-                      { id: data.id },
-                      onReload,
-                      "Are you sure you want to delete this item?",
-                      "Yes, Delete"
-                    );
-                  }}
-                >
-                  <FaTrashAlt size={12} />
-                </button>
-              )} */}
-              {/* {onDeleteData && data?.disableDeleteData !== 1 && (
-                <button
-                  className="border border-indigo-700 text-indigo-700 p-2 rounded hover:bg-indigo-700 hover:text-white focus:shadow-none"
-                  title="Edit"
-                  onClick={() => onDeleteData(data)}
-                >
-                  <FaTrashAlt size={12} /></button>
-              )} */}
+const ProjectsTable = ({ projects }) => {
+    return (
+        <div className="p-6 bg-gray-900 text-white">
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">Projects</h2>
+                <span className="text-gray-400">30 done this month</span>
             </div>
-          );
-        },
-      },
-    ];
-
-
-  return (
-    <>
-      {/* <Card className={"shadow-sm"}> */}
-        {noHeader || (
-          <header className="px-4 pt-3 pb-2 border-b border-gray-100 flex justify-between flex-wrap gap-2">
-            {title ? (
-              <>
-                {typeof title === "string" ? (
-                  <h4 className="text-base font-medium text-[#003049]">
-                    {title}
-                  </h4>
-                ) : (
-                  title
-                )}
-              </>
-            ) : (
-              <div className="flex flex-wrap ">
-                {/* <SearchInput
-                  className="w-44 "
-                  onChange={(e) => {
-                    onReload({ search: e.target.value || undefined, page: 1 });
-                    onSearchChange && onSearchChange(e.target.value || "");
-                  }}
-                /> */}
-                {afterSearch}
-              </div>
-            )}
-            {action}
-          </header>
-        )}
-        <div className="p-3 relative">
-          <div className="overflow-x-auto">
-            <table className="table-auto w-full">
-              <thead className="text-xs font-semibold uppercase bg-gray-50 text-gray-500">
-                <tr>
-                  {indexed && (
-                    <th className="p-2 whitespace-nowrap">
-                      <div className="font-semibold text-left">#</div>
-                    </th>
-                  )}
-                  {cols?.map((column, index) => (
-                    <th className="p-2 whitespace-nowrap text-left" key={index}>
-                      <div
-                        className={`font-semibold ${column?.className || ""}`}
-                      >
-                        {/* {column.text} */}
-                        {/* {i18n.t(column?.text)} */}
-                      </div>
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="text-sm divide-y divide-gray-100">
-                {loading ? (
-                  <tr>
-                    <td className="h-96 pb-16">
-                      <div
-                        style={{ height: 200 }}
-                        className="absolute w-full flex justify-center"
-                      >
-                        <Loader />
-                      </div>
-                    </td>
-                  </tr>
-                ) : (
-                  <>
-                    {(pagination ? data?.docs : data)?.map((row, index) => (
-                      <tr key={index}>
-                        {indexed && (
-                          <td className="p-2 whitespace-nowrap text-gray-500">
-                            {(pagination ? (data?.page - 1) * data.limit : 0) +
-                              index +
-                              1}
-                          </td>
-                        )}
-                        {cols?.map((column, index) => (
-                          <td
-                            className={`p-2 whitespace-nowrap text-gray-700 ${column?.className || ""
-                              }`}
-                            key={index}
-                          >
-                            {column.formatter
-                              ? column.formatter(row[column.dataField], row)
-                              : row[column.dataField] || "-"}
-                          </td>
+            <div className="overflow-x-auto">
+                <table className="min-w-full bg-gray-800 rounded-lg">
+                    <thead>
+                        <tr>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Companies</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Members</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Budget</th>
+                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Completion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {projects.map((project, index) => (
+                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-700' : 'bg-gray-600'}>
+                                <td className="px-6 py-4 whitespace-nowrap">{project.company}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    {/* Render member icons */}
+                                    <div className="flex space-x-2">
+                                        {project.members.map((member, idx) => (
+                                            <img key={idx} src={member.avatar} alt="member" className="w-6 h-6 rounded-full" />
+                                        ))}
+                                    </div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">{project.budget}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{project.completion}%</td>
+                            </tr>
                         ))}
-                      </tr>
-                    ))}
-                  </>
-                )}
-              </tbody>
-
-            </table>
-            {
-              (data?.docs?.length < 1 || data?.length < 1) && <div className="py-10">
-                <Empty description={i18n.t("No data available.")} />
-              </div>
-            }
-
-          </div>
-          {pagination && (
-            <div className="pt-3 mt-3 border-t">
-              <Pagination
-                page={data?.page}
-                total={data?.totalDocs}
-                onSizeChange={(limit) => onReload({ limit })}
-                limit={data?.limit}
-                totalPages={data?.totalPages}
-                onPageChange={(page) => onReload({ page })}
-              />
+                    </tbody>
+                </table>
             </div>
-          )}
         </div>
-      {/* </Card> */}
-    </>
-  );
+    );
 };
-export default Table;
 
-// export const DetailTable = ({ data, columns, title, actions }) => {
-//   const i18n = useI18n();
-//   return (
-//     <div className="bg-transparent shadow-md rounded-md p-4">
-//       {!!title && (
-//         <div className="text-xl font-semibold mb-4">{i18n.t(title)}</div>
-//       )}
-//       <div className="body">
-//         <div className="overflow-x-auto">
-//           <table className="min-w-full border border-gray-300">
-//             <tbody>
-//               {columns?.map((column, index) => (
-//                 <tr key={index} className="border-b border-gray-300">
-//                   <td className="py-2 px-4">{i18n.t(column.text)}</td>
-//                   <td className="py-2 px-4 text-sm">
-//                     {!!data
-//                       ? !!column?.formatter
-//                         ? column?.formatter(data[column.dataIndex], data)
-//                         : data[column.dataIndex]
-//                       : ""}
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//         {actions}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export const TableImage = ({ url }) => {
-//   const [image, setImage] = useState();
-//   return (
-//     <div className="w-inline-block h-8">
-//       <img
-//         role="button"
-//         src={url}
-//         alt="Image"
-//         onClick={() => setImage(url)}
-//         style={{ maxWidth: "100%", maxHeight: "100%" }}
-//       />
-//       <Modal
-//         width={800}
-//         open={image}
-//         onCancel={() => setImage(undefined)}
-//         footer={null}
-//         bodyStyle={{ padding: 0, zIndex: 60 }}
-//         closeIcon={
-//           <FaTimes
-//             size={18}
-//             className="  rounded hover:!bg-none text-primary"
-//           />
-//         }
-//       >
-//         <div className="flex justify-center items-center">
-//           <img
-//             className="w-100"
-//             style={{ minHeight: 400 }}
-//             src={image}
-//             alt=""
-//           />
-//         </div>
-//       </Modal>
-//     </div>
-//   );
-// };
+export default ProjectsTable;
